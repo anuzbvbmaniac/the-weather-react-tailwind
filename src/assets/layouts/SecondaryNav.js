@@ -1,8 +1,12 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
+import PropTypes from "prop-types";
+
 import { ChevronDownIcon, GlobeIcon } from "@heroicons/react/solid";
 import { Menu, Transition } from "@headlessui/react";
 
-const SecondaryNav = () => {
+
+const SecondaryNav = ({name, country, degreeType}) => {
+
 
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ');
@@ -12,13 +16,18 @@ const SecondaryNav = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-0 pt-2">
             <div className="sm:flex sm:justify-between sm:items-center items-center">
                 <div className="sm:w-0 sm:flex-1">
-                    <p className="text-xs text-gray-600 overflow-hidden overflow-ellipsis">Kathmandu, Nepal - Based on your internet address - Use precise location - More information.</p>
+                    <p className="text-xs text-gray-600 overflow-hidden overflow-ellipsis">
+                        <span className="font-semibold">{name}, {country} </span>
+                        - Based on your internet address - Use precise location - More information.
+                    </p>
                 </div>
 
                 <div className="mt-0 flex items-center justify-between sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:justify-start">
                         <span className="inline-flex items-center px-3 py-0.5 text-sm font-medium">
                             <GlobeIcon className="block h-6 w-6" aria-hidden="true"/>
-                            <p className="ml-2 text-sm font-semibold text-gray-600 overflow-hidden overflow-ellipsis">NP | Cº</p>
+                            <p className="ml-2 text-sm font-semibold text-gray-600 overflow-hidden overflow-ellipsis">
+                                Metric: {degreeType === 'celsius' ? 'ºC, m/s' : 'ºF, mph'}
+                            </p>
                         </span>
                     <Menu as="div" className="relative inline-block text-left">
                         {({ open }) => (
@@ -48,7 +57,7 @@ const SecondaryNav = () => {
                                             <Menu.Item>
                                                 {({ active }) => (
                                                     <a
-                                                        href="#"
+                                                        href="/"
                                                         className={classNames(
                                                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                                             'flex justify-between px-4 py-2 text-sm'
@@ -61,7 +70,7 @@ const SecondaryNav = () => {
                                             <Menu.Item>
                                                 {({ active }) => (
                                                     <a
-                                                        href="#"
+                                                        href="/"
                                                         className={classNames(
                                                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                                             'flex justify-between px-4 py-2 text-sm'
@@ -69,19 +78,6 @@ const SecondaryNav = () => {
                                                     >
                                                         <span>Duplicate</span>
                                                     </a>
-                                                )}
-                                            </Menu.Item>
-                                            <Menu.Item>
-                                                {({ active }) => (
-                                                    <button
-                                                        type="button"
-                                                        className={classNames(
-                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                            'w-full flex justify-between px-4 py-2 text-sm'
-                                                        )}
-                                                    >
-                                                        <span>Archive</span>
-                                                    </button>
                                                 )}
                                             </Menu.Item>
                                         </div>
@@ -94,6 +90,18 @@ const SecondaryNav = () => {
             </div>
         </div>
     );
+};
+
+SecondaryNav.defaultProps = {
+    name: 'Kathmandu',
+    country: 'Nepal',
+    degreeType: 'celsius'
+}
+
+SecondaryNav.protoTypes = {
+    name: PropTypes.string.isRequired,
+    country: PropTypes.string.isRequired,
+    degreeType: PropTypes.string.isRequired,
 };
 
 export default SecondaryNav;
