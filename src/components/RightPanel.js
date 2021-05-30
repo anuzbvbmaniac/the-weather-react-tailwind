@@ -27,13 +27,13 @@ const RightPanel = ({ weather }) => {
 
     return (
         <div className="flex flex-col justify-center items-center">
-            <div className="relative pl-36">
+            <div className="pl-36">
                 {/*<img src={`${process.env.PUBLIC_URL}/assets/img/icons/${weather.currentData.weather[0].icon}.png`} alt="" className="w-3/4 absolute filter blur-md top-0"/>*/}
                 <img
                     src={`${process.env.PUBLIC_URL}/assets/img/icons/${weather.currentData.weather[0].icon}.png`}
                     alt={`${weather.currentData.weather[0].main}`}
                     title={`${weather.currentData.weather[0].main}`}
-                    className="w-3/4 relative"
+                    className="w-3/4"
                 />
             </div>
 
@@ -45,7 +45,7 @@ const RightPanel = ({ weather }) => {
                 <div className="px-6">
                     <div className="sm:flex sm:items-center sm:justify-between">
                         <div className="text-center sm:mt-0 sm:pt-1 sm:text-left">
-                            <p className="text-md font-semibold text-gray-600">Today’s Forecast for Kathmandu, Nepal</p>
+                            <p className="text-md font-semibold text-gray-600 dark:text-gray-200">Today’s Forecast for Kathmandu, Nepal</p>
                         </div>
                     </div>
 
@@ -53,9 +53,9 @@ const RightPanel = ({ weather }) => {
 
                         <div className="pt-2">
                             <div className="text-center sm:mt-0 sm:pt-1 sm:text-left">
-                                <p className="text-sm font-medium text-gray-600">Morning</p>
+                                <p className="text-sm font-medium text-gray-600 dark:text-gray-200">Morning</p>
                                 <p className="text-xs font-medium text-gray-400">8:00 am</p>
-                                <p className="mt-2 text-5xl font-semibold text-gray-600">{morning_temp}</p>
+                                <p className="mt-2 text-5xl font-semibold text-gray-600 dark:text-gray-200">{morning_temp}</p>
                                 <img
                                     src={`${process.env.PUBLIC_URL}/assets/img/icons/${weather.hourlyData[8].weather[0].icon}.png`}
                                     alt={`${weather.hourlyData[8].weather[0].description}`}
@@ -67,9 +67,9 @@ const RightPanel = ({ weather }) => {
 
                         <div className="pt-2">
                             <div className="text-center sm:mt-0 sm:pt-1 sm:text-left">
-                                <p className="text-sm font-medium text-gray-600">Afternoon</p>
+                                <p className="text-sm font-medium text-gray-600 dark:text-gray-200">Afternoon</p>
                                 <p className="text-xs font-medium text-gray-400">2:00 pm</p>
-                                <p className="mt-2 text-5xl font-semibold text-gray-600">{afternoon_temp}</p>
+                                <p className="mt-2 text-5xl font-semibold text-gray-600 dark:text-gray-200">{afternoon_temp}</p>
                                 <img
                                     src={`${process.env.PUBLIC_URL}/assets/img/icons/${weather.hourlyData[14].weather[0].icon}.png`}
                                     alt={`${weather.hourlyData[14].weather[0].description}`}
@@ -81,9 +81,9 @@ const RightPanel = ({ weather }) => {
 
                         <div className="pt-2">
                             <div className="text-center sm:mt-0 sm:pt-1 sm:text-left">
-                                <p className="text-sm font-medium text-gray-600">Evening</p>
+                                <p className="text-sm font-medium text-gray-600 dark:text-gray-200">Evening</p>
                                 <p className="text-xs font-medium text-gray-400">6:00 pm</p>
-                                <p className="mt-2 text-5xl font-semibold text-gray-600">{evening_temp}</p>
+                                <p className="mt-2 text-5xl font-semibold text-gray-600 dark:text-gray-200">{evening_temp}</p>
                                 <img
                                     src={`${process.env.PUBLIC_URL}/assets/img/icons/${weather.hourlyData[18].weather[0].icon}.png`}
                                     alt={`${weather.hourlyData[18].weather[0].description}`}
@@ -95,9 +95,9 @@ const RightPanel = ({ weather }) => {
 
                         <div className="pt-2">
                             <div className="text-center sm:mt-0 sm:pt-1 sm:text-left">
-                                <p className="text-sm font-medium text-gray-600">Night</p>
+                                <p className="text-sm font-medium text-gray-600 dark:text-gray-200">Night</p>
                                 <p className="text-xs font-medium text-gray-400">10:00 pm</p>
-                                <p className="mt-2 text-5xl font-semibold text-gray-600">{night_temp}</p>
+                                <p className="mt-2 text-5xl font-semibold text-gray-600 dark:text-gray-200">{night_temp}</p>
                                 <img
                                     src={`${process.env.PUBLIC_URL}/assets/img/icons/${weather.hourlyData[22].weather[0].icon}.png`}
                                     alt={`${weather.hourlyData[22].weather[0].description}`}

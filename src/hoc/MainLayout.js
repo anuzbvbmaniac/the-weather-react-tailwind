@@ -5,13 +5,18 @@ import PropTypes from "prop-types";
 import Navigation from "../assets/layouts/Navigation";
 import SecondaryNav from "../assets/layouts/SecondaryNav";
 
-import {getWeatherFromLatLong} from "../actions/weatherActions";
+import { getWeatherFromLatLong } from "../actions/weatherActions";
 import Spinner from "../components/Spinner";
 
 const MainLayout = ({ getWeatherFromLatLong, weather, children }) => {
 
     useEffect(() => {
         getWeatherFromLatLong();
+
+        localStorage.getItem('darkMode') === 'true'
+            ? document.querySelector('body').classList.add('dark')
+            : document.querySelector('body').classList.remove('dark');
+
         // eslint-disable-next-line
     }, []);
 
@@ -20,7 +25,7 @@ const MainLayout = ({ getWeatherFromLatLong, weather, children }) => {
     }
 
     return (
-        <div>
+        <div className="bg-purple-50 dark:bg-dark h-screen">
             <Navigation/>
 
             <SecondaryNav name={weather.location.city} country={weather.location.countryName} degreeType={weather.degreeType}/>
@@ -35,7 +40,7 @@ const MainLayout = ({ getWeatherFromLatLong, weather, children }) => {
 MainLayout.propTypes = {
     weather: PropTypes.object.isRequired,
     getWeatherFromLatLong: PropTypes.func.isRequired,
-}
+};
 
 const mapStateToProps = (state) => ({
     weather: state.weather,
@@ -43,5 +48,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
     mapStateToProps,
-    {getWeatherFromLatLong}
+    { getWeatherFromLatLong }
 )(MainLayout);

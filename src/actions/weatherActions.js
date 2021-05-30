@@ -1,6 +1,6 @@
 // Get Weather Data from Latitude and Longitude
 import axios from "axios";
-import { GET_CURRENT_WEATHER_DATA, SET_ALERT, SET_ERRORS, SET_LOADING } from "./types";
+import { GET_CURRENT_WEATHER_DATA, SET_ALERT, SET_DARK_MODE, SET_ERRORS, SET_LOADING } from "./types";
 
 const weatherURL = 'https://api.openweathermap.org/data/2.5/onecall';
 // const forecastURL = 'https://api.openweathermap.org/data/2.5/forecast';
@@ -89,3 +89,10 @@ export const setLoading = () => {
         type: SET_LOADING
     };
 };
+
+// export const toggleDarkMode = (status) => {
+//     return {
+//         type: SET_DARK_MODE,
+//         payload: status,
+//     }
+// }

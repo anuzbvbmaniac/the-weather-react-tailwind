@@ -6,6 +6,7 @@ const initialState = {
     hourlyData: [],
     dailyData: [],
     location: [],
+    dark: false,
     degreeType: 'celsius', // fahrenheit, kelvin
 };
 

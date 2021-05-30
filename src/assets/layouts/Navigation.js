@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
 
 import { SearchIcon } from "@heroicons/react/solid";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
@@ -7,17 +8,30 @@ import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 
 import logo from "../img/logos/logo-black-512.png";
 
-const Navigation = () => {
+const Navigation = ({ weather }) => {
 
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ');
     }
 
+    const toggleDarkMode = (event) => {
+        event.preventDefault();
+        const body = document.querySelector('body');
+
+        body.classList.toggle('dark');
+
+        if (document.body.classList.contains('dark')) {
+            localStorage.setItem('darkMode', 'true')
+        } else {
+            localStorage.removeItem('darkMode');
+        }
+    };
+
     return (
         <Disclosure as="nav">
             {({ open }) => (
                 <>
-                    <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-0 border-b-2 border-gray-200">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-0 border-b-2 border-gray-200 dark:border-white">
                         <div className="flex justify-between h-20">
                             <div className="flex px-2 lg:px-0">
                                 <div className="flex-shrink-0 flex items-center">
@@ -35,37 +49,37 @@ const Navigation = () => {
                                 <div className="hidden lg:ml-12 lg:flex lg:space-x-8">
                                     <Link
                                         to={'/'}
-                                        className="border-transparent text-gray-500  hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
+                                        className="border-transparent text-gray-500 dark:text-gray-200 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
                                     >
                                         Today
                                     </Link>
                                     <Link
                                         to={'/hourly'}
-                                        className="border-transparent text-gray-500  hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
+                                        className="border-transparent text-gray-500 dark:text-gray-200 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
                                     >
                                         Hourly
                                     </Link>
                                     <a
                                         href="/"
-                                        className="border-transparent text-gray-500  hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
+                                        className="border-transparent text-gray-500 dark:text-gray-200 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
                                     >
                                         10 Days
                                     </a>
                                     <a
                                         href="/"
-                                        className="border-transparent text-gray-500  hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
+                                        className="border-transparent text-gray-500 dark:text-gray-200 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
                                     >
                                         Weekends
                                     </a>
                                     <a
                                         href="/"
-                                        className="border-transparent text-gray-500  hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
+                                        className="border-transparent text-gray-500 dark:text-gray-200 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
                                     >
                                         Monthly
                                     </a>
                                     <a
                                         href="/"
-                                        className="border-transparent text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
+                                        className="border-transparent text-gray-500 dark:text-gray-200 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
                                     >
                                         Radar
                                     </a>
@@ -83,7 +97,7 @@ const Navigation = () => {
                                         <input
                                             id="search"
                                             name="search"
-                                            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-transparent placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                            className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-50 rounded-md leading-5 bg-transparent placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
                                             placeholder="Search"
                                             type="search"
                                         />
@@ -92,7 +106,7 @@ const Navigation = () => {
                             </div>
                             <div className="flex items-center lg:hidden">
                                 {/* Mobile menu button */}
-                                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
                                     <span className="sr-only">Open main menu</span>
                                     {open ? (
                                         <XIcon className="block h-6 w-6" aria-hidden="true"/>
@@ -107,7 +121,7 @@ const Navigation = () => {
                                     {({ open }) => (
                                         <>
                                             <div>
-                                                <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                <Menu.Button className="bg-white dark:bg-dark rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                     <span className="sr-only">Open user menu</span>
                                                     <img
                                                         className="h-8 w-8 rounded-full"
@@ -128,18 +142,19 @@ const Navigation = () => {
                                             >
                                                 <Menu.Items
                                                     static
-                                                    className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                                    className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10 dark:bg-dark"
                                                 >
                                                     <Menu.Item>
                                                         {({ active }) => (
                                                             <a
-                                                                href="/"
+                                                                href="!#"
+                                                                onClick={toggleDarkMode}
                                                                 className={classNames(
                                                                     active ? 'bg-gray-100' : '',
-                                                                    'block px-4 py-2 text-sm text-gray-700'
+                                                                    'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-dark'
                                                                 )}
                                                             >
-                                                                Your Profile
+                                                                🌛 Enable Dark Mode
                                                             </a>
                                                         )}
                                                     </Menu.Item>
@@ -149,10 +164,10 @@ const Navigation = () => {
                                                                 href="/"
                                                                 className={classNames(
                                                                     active ? 'bg-gray-100' : '',
-                                                                    'block px-4 py-2 text-sm text-gray-700'
+                                                                    'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-dark'
                                                                 )}
                                                             >
-                                                                Settings
+                                                                Github
                                                             </a>
                                                         )}
                                                     </Menu.Item>
@@ -162,7 +177,7 @@ const Navigation = () => {
                                                                 href="/"
                                                                 className={classNames(
                                                                     active ? 'bg-gray-100' : '',
-                                                                    'block px-4 py-2 text-sm text-gray-700'
+                                                                    'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-dark'
                                                                 )}
                                                             >
                                                                 Sign out
@@ -252,4 +267,11 @@ const Navigation = () => {
     );
 };
 
-export default Navigation;
+const mapStateToProps = state => ({
+    weather: state.weather,
+});
+
+export default connect(
+    mapStateToProps,
+    {}
+)(Navigation);

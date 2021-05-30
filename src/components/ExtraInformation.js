@@ -91,7 +91,7 @@ const ExtraInformation = ({weather}) => {
                 <div className="">
                     <div className="sm:flex sm:items-center sm:justify-between">
                         <div className="mt-0 text-center sm:mt-0 sm:pt-1 sm:text-left">
-                            <p className="text-sm font-semibold text-gray-600 mt-0">Weather today in {weather.location.city}, {weather.location.countryName}</p>
+                            <p className="text-sm font-semibold text-gray-600 mt-0 dark:text-gray-200">Weather today in {weather.location.city}, {weather.location.countryName}</p>
                         </div>
                     </div>
 
@@ -100,7 +100,7 @@ const ExtraInformation = ({weather}) => {
                         <div className="sm:flex sm:items-center sm:justify-between pt-2">
                             <div className="sm:flex sm:space-x-5">
                                 <div className="text-center sm:mt-0 sm:pt-1 sm:text-left">
-                                    <p className="mt-0 text-5xl font-semibold text-gray-600">{feels_like_value}</p>
+                                    <p className="mt-0 text-5xl font-semibold text-gray-600 dark:text-gray-200">{feels_like_value}</p>
                                     <p className="text-sm font-medium text-gray-400 mt-2">Feels like</p>
                                 </div>
                             </div>
@@ -134,10 +134,10 @@ const ExtraInformation = ({weather}) => {
                                             <img className="h-8 w-8 rounded-full" src={item.icon} alt=""/>
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                            <p className="text-xs font-semibold text-gray-900 truncate">{item.title}</p>
+                                            <p className="text-xs font-semibold text-gray-900 truncate dark:text-gray-200">{item.title}</p>
                                         </div>
                                         <div>
-                                            <p className="text-xs font-semibold text-gray-900 truncate">
+                                            <p className="text-xs font-semibold text-gray-900 truncate dark:text-gray-200">
                                                 {item.value}
                                             </p>
                                         </div>

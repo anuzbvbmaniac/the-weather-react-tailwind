@@ -14,11 +14,11 @@ const InformationPanel = ({ weather }) => {
                 <h2 className="sr-only" id="profile-overview-title">
                     Weather Overview
                 </h2>
-                <div className="bg-purple-50 py-3">
+                <div className="bg-purple-50 dark:bg-dark py-3">
                     <div className="sm:flex sm:items-center sm:justify-between border-b-2 border-gray-200 pb-2">
                         <div className="sm:flex sm:space-x-5">
                             <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
-                                <p className="text-lg font-semibold text-gray-600">{`${weather.location.city}, ${weather.location.countryName}`} Weather</p>
+                                <p className="text-lg font-semibold text-gray-600 dark:text-gray-200">{`${weather.location.city}, ${weather.location.countryName}`} Weather</p>
                                 <p className="text-sm font-medium text-gray-400 mt-2">As of <Moment format={'LLLL'}>{weather.currentData.dt}</Moment></p>
                                 <p className="mt-2 text-4xl font-semibold text-yellow-400">{weather.degreeType === 'celsius' ? celsiusReading : fahrenheitReading}º</p>
                             </div>
@@ -27,7 +27,7 @@ const InformationPanel = ({ weather }) => {
                     <div className="sm:flex sm:items-center sm:justify-between mt-2">
                         <div className="sm:flex sm:space-x-5">
                             <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
-                                <p className="text-md font-semibold text-gray-600 capitalize">
+                                <p className="text-md font-semibold text-gray-600 capitalize dark:text-gray-200">
                                     {weather.currentData.weather[0].description}
                                 </p>
                                 <p className="text-sm font-medium text-gray-400">1% chance of rain throughout 2 am</p>

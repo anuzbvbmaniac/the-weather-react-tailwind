@@ -8,3 +8,5 @@ export const SET_ERRORS = 'SET_ERRORS';
 export const SET_LOADING = 'SET_LOADING';
 
 export const SET_ALERT = 'SET_ALERT';
+
+export const SET_DARK_MODE = 'SET_DARK_MODE';
