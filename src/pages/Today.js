@@ -6,7 +6,7 @@ import RightPanel from "../components/RightPanel";
 const Today = () => {
     return (
         <div className="mx-auto lg:max-w-7xl">
-            <div className="grid grid-cols-1 gap-4 items-start lg:grid-cols-5 lg:gap-8">
+            <div className="grid grid-cols-1 gap-4 items-start lg:grid-cols-6 lg:gap-8">
 
                 {/* Left column */}
                 <div className="grid grid-cols-1 gap-4 lg:col-span-3">
@@ -19,7 +19,7 @@ const Today = () => {
                 </div>
 
                 {/* Right column */}
-                <div className="grid lg:col-span-2 flex">
+                <div className="grid lg:col-span-3">
 
                     <RightPanel/>
 

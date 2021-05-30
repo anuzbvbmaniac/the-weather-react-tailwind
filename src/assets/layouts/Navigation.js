@@ -18,7 +18,7 @@ const Navigation = () => {
             {({ open }) => (
                 <>
                     <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-0 border-b-2 border-gray-200">
-                        <div className="flex justify-between h-16">
+                        <div className="flex justify-between h-20">
                             <div className="flex px-2 lg:px-0">
                                 <div className="flex-shrink-0 flex items-center">
                                     <img

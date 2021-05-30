@@ -1,19 +1,17 @@
 import React from 'react';
 import { connect } from "react-redux";
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import Moment from "react-moment";
 
 import { DownloadIcon, UploadIcon } from "@heroicons/react/solid";
 
 import sunUpAndDown from "../assets/img/sun-up-n-down.png";
-import temperature from "../assets/img/extras/temperature.svg";
 import wind from "../assets/img/extras/wind.svg";
 import humidity from "../assets/img/extras/humidity.svg";
 import dew_point from "../assets/img/extras/dew_point.svg";
 import pressure from "../assets/img/extras/pressure.svg";
 import uv_index from "../assets/img/extras/uv_index.svg";
 import visibility from "../assets/img/extras/visibility.svg";
-import moonphase from "../assets/img/extras/moonphase.svg";
 
 const ExtraInformation = ({weather}) => {
 
@@ -33,7 +31,7 @@ const ExtraInformation = ({weather}) => {
     const wind_speed = weather.degreeType === 'celsius' ? wind_speed_mps + 'm/s' : wind_speed_mph + 'mph';
 
     const dew_point_celsius = weather.currentData.dew_point;
-    const dew_point_fahrenheit = Math.round(dew_point_celsius * 9/5) + 32;
+    const dew_point_fahrenheit = Math.round(dew_point_celsius * 9 / 5) + 32;
 
     const dew_point_value = weather.degreeType === 'celsius' ? dew_point_celsius + 'ºC' : dew_point_fahrenheit + 'ºF';
 
@@ -52,11 +50,6 @@ const ExtraInformation = ({weather}) => {
     const feels_like_value = weather.degreeType === 'celsius' ? feels_like_celsius + 'ºC' : feels_like_fahrenheit + 'ºF';
 
     const extraInfo = [
-        {
-            icon: temperature,
-            title: 'Temperature',
-            value: `5º/20ºC`
-        },
         {
             icon: wind,
             title: 'Wind',
@@ -87,20 +80,15 @@ const ExtraInformation = ({weather}) => {
             title: 'Visibility',
             value: visibility_value
         },
-        {
-            icon: moonphase,
-            title: 'Moon Phase',
-            value: 'Waxing Gibbous'
-        },
     ];
 
     return (
         <section aria-labelledby="profile-overview-title">
-            <div className="rounded-lg overflow-hidden w-4/5">
+            <div className="rounded-lg overflow-hidden">
                 <h2 className="sr-only" id="profile-overview-title">
                     Extra Information
                 </h2>
-                <div className="px-6">
+                <div className="">
                     <div className="sm:flex sm:items-center sm:justify-between">
                         <div className="mt-0 text-center sm:mt-0 sm:pt-1 sm:text-left">
                             <p className="text-sm font-semibold text-gray-600 mt-0">Weather today in {weather.location.city}, {weather.location.countryName}</p>

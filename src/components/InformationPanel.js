@@ -10,12 +10,12 @@ const InformationPanel = ({ weather }) => {
 
     return (
         <section aria-labelledby="profile-overview-title">
-            <div className="rounded-lg bg-white overflow-hidden shadow w-4/5">
+            <div className="rounded-lg overflow-hidden">
                 <h2 className="sr-only" id="profile-overview-title">
                     Weather Overview
                 </h2>
-                <div className="bg-purple-50 px-6 py-3">
-                    <div className="sm:flex sm:items-center sm:justify-between border-b-2 border-gray-200 pb-2 w-4/5">
+                <div className="bg-purple-50 py-3">
+                    <div className="sm:flex sm:items-center sm:justify-between border-b-2 border-gray-200 pb-2">
                         <div className="sm:flex sm:space-x-5">
                             <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
                                 <p className="text-lg font-semibold text-gray-600">{`${weather.location.city}, ${weather.location.countryName}`} Weather</p>
