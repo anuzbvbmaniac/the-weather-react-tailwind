@@ -19,7 +19,7 @@ const InformationPanel = ({ weather }) => {
                         <div className="sm:flex sm:space-x-5">
                             <div className="mt-4 text-left sm:mt-0 sm:pt-1">
                                 <p className="text-lg font-semibold text-gray-600 dark:text-gray-200">{`${weather.location.city}, ${weather.location.countryName}`} Weather</p>
-                                <p className="text-sm font-medium text-gray-400 mt-2">As of <Moment format={'LLLL'}>{weather.currentData.dt}</Moment></p>
+                                <p className="text-sm font-medium text-gray-400 mt-2">As of <Moment unix>{weather.currentData.dt}</Moment></p>
                                 <p className="mt-2 text-4xl font-semibold text-yellow-400">{weather.degreeType === 'celsius' ? celsiusReading : fahrenheitReading}º</p>
                             </div>
                         </div>

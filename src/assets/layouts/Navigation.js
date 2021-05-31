@@ -1,18 +1,17 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { connect } from "react-redux";
 
 import { SearchIcon } from "@heroicons/react/solid";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
-import logo from "../img/logos/logo-black-512.png";
+import logoDark from "../img/logos/logo-black-512.png";
+import logoDarkSmall from "../img/logos/logo-black-128.png";
 
-const Navigation = ({ weather }) => {
+import { setDarkMode } from "../../actions/weatherActions";
 
-    function classNames(...classes) {
-        return classes.filter(Boolean).join(' ');
-    }
+const Navigation = ({ weather, setDarkMode }) => {
 
     const toggleDarkMode = (event) => {
         event.preventDefault();
@@ -22,8 +21,10 @@ const Navigation = ({ weather }) => {
 
         if (document.body.classList.contains('dark')) {
             localStorage.setItem('darkMode', 'true');
+            setDarkMode(true);
         } else {
             localStorage.removeItem('darkMode');
+            setDarkMode(false);
         }
     };
 
@@ -37,52 +38,51 @@ const Navigation = ({ weather }) => {
                                 <div className="flex-shrink-0 flex items-center">
                                     <img
                                         className="block lg:hidden h-14 w-auto"
-                                        src={logo}
-                                        alt="Workflow"
+                                        src={logoDarkSmall}
+                                        alt="The Weather App"
                                     />
                                     <img
                                         className="hidden lg:block h-14 w-auto"
-                                        src={logo}
-                                        alt="Workflow"
+                                        src={logoDark}
+                                        alt="The Weather App"
                                     />
                                 </div>
                                 <div className="hidden lg:ml-12 lg:flex lg:space-x-8">
-                                    <Link
+                                    <NavLink
                                         to={'/'}
+                                        activeClassName="text-gray-900"
                                         className="border-transparent text-gray-500 dark:text-gray-200 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
                                     >
                                         Today
-                                    </Link>
-                                    <Link
+                                    </NavLink>
+                                    <NavLink
                                         to={'/hourly'}
+                                        activeClassName="text-gray-900"
                                         className="border-transparent text-gray-500 dark:text-gray-200 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
                                     >
                                         Hourly
-                                    </Link>
-                                    <a
-                                        href="/"
+                                    </NavLink>
+                                    <NavLink
+                                        to={'/days'}
+                                        activeClassName="text-gray-900"
                                         className="border-transparent text-gray-500 dark:text-gray-200 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
                                     >
-                                        10 Days
-                                    </a>
-                                    <a
-                                        href="/"
-                                        className="border-transparent text-gray-500 dark:text-gray-200 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
-                                    >
-                                        Weekends
-                                    </a>
-                                    <a
-                                        href="/"
+                                        7 Days
+                                    </NavLink>
+                                    <NavLink
+                                        to="/monthly"
+                                        activeClassName="text-gray-900"
                                         className="border-transparent text-gray-500 dark:text-gray-200 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
                                     >
                                         Monthly
-                                    </a>
-                                    <a
-                                        href="/"
+                                    </NavLink>
+                                    <NavLink
+                                        to={'/about'}
+                                        activeClassName="text-gray-900"
                                         className="border-transparent text-gray-500 dark:text-gray-200 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold"
                                     >
-                                        Radar
-                                    </a>
+                                        About
+                                    </NavLink>
                                 </div>
                             </div>
                             <div className="flex-1 flex items-center justify-center px-2 lg:ml-6 lg:justify-end">
@@ -145,44 +145,30 @@ const Navigation = ({ weather }) => {
                                                     className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10 dark:bg-dark"
                                                 >
                                                     <Menu.Item>
-                                                        {({ active }) => (
-                                                            <a
-                                                                href="!#"
-                                                                onClick={toggleDarkMode}
-                                                                className={classNames(
-                                                                    active ? 'bg-gray-100' : '',
-                                                                    'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-transparent'
-                                                                )}
-                                                            >
-                                                                🌛 Enable Dark Mode
-                                                            </a>
-                                                        )}
+
+                                                        <button
+                                                            onClick={toggleDarkMode}
+                                                            className={'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-transparent'}
+                                                        >
+                                                            {weather.dark ? '☀️ Enable Light Mode' : '🌛 Enable Dark Mode'}
+                                                        </button>
+
                                                     </Menu.Item>
                                                     <Menu.Item>
-                                                        {({ active }) => (
-                                                            <a
-                                                                href="/"
-                                                                className={classNames(
-                                                                    active ? 'bg-gray-100' : '',
-                                                                    'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-transparent'
-                                                                )}
-                                                            >
-                                                                Github
-                                                            </a>
-                                                        )}
+                                                        <a
+                                                            href="/"
+                                                            className={'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-transparent'}
+                                                        >
+                                                            Github
+                                                        </a>
                                                     </Menu.Item>
                                                     <Menu.Item>
-                                                        {({ active }) => (
-                                                            <a
-                                                                href="/"
-                                                                className={classNames(
-                                                                    active ? 'bg-gray-100' : '',
-                                                                    'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-transparent'
-                                                                )}
-                                                            >
-                                                                Website
-                                                            </a>
-                                                        )}
+                                                        <a
+                                                            href="/"
+                                                            className={'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-transparent'}
+                                                        >
+                                                            Website
+                                                        </a>
                                                     </Menu.Item>
                                                 </Menu.Items>
                                             </Transition>
@@ -196,24 +182,36 @@ const Navigation = ({ weather }) => {
                     <Disclosure.Panel className="lg:hidden">
                         <div className="pt-2 pb-3 space-y-1">
                             {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800" */}
-                            <Link
+                            <NavLink
                                 to="/"
                                 className="border-yellow-500 text-dark dark:text-gray-200 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                             >
-                                Home
-                            </Link>
-                            <Link
+                                Today
+                            </NavLink>
+                            <NavLink
                                 to="/hourly"
                                 className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                             >
                                 Hourly
-                            </Link>
-                            <a
-                                href="/"
+                            </NavLink>
+                            <NavLink
+                                to="/days"
                                 className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                             >
-                                10 Days
-                            </a>
+                                7 Days
+                            </NavLink>
+                            <NavLink
+                                to="/monthly"
+                                className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                            >
+                                Monthly
+                            </NavLink>
+                            <NavLink
+                                to="/about"
+                                className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                            >
+                                About
+                            </NavLink>
                         </div>
                         <div className="pt-4 pb-3 border-t border-gray-200">
                             <div className="flex items-center px-4">
@@ -264,5 +262,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    {}
+    { setDarkMode }
 )(Navigation);

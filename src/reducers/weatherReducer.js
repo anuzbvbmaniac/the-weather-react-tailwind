@@ -1,4 +1,4 @@
-import { GET_CURRENT_WEATHER_DATA, SET_LOADING, SET_METRIC } from "../actions/types";
+import { GET_CURRENT_WEATHER_DATA, SET_DARK_MODE, SET_LOADING, SET_METRIC } from "../actions/types";
 
 const initialState = {
     loading: false,
@@ -33,6 +33,11 @@ const weatherReducer = (state = initialState, action) => {
                 ...state,
                 loading: true,
             };
+        case SET_DARK_MODE:
+            return {
+                ...state,
+                dark: action.payload,
+            }
         default:
             return state;
     }

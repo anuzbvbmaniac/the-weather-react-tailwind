@@ -61,13 +61,13 @@ const SecondaryNav = ({ weather, name, country, degreeType, setMetric }) => {
                                                 {(weather.degreeType === 'celsius')
                                                     ? (<button
                                                         onClick={onClickHandler}
-                                                        className={'flex justify-between px-4 py-2 text-sm dark:text-gray-200 hover:bg-transparent'}
+                                                        className={'flex justify-between px-4 py-2 text-sm dark:text-gray-200 hover:bg-transparent w-full outline-none'}
                                                     >
                                                         <span>ºF, mph</span>
                                                     </button>)
                                                     : (<button
                                                         onClick={onClickHandler}
-                                                        className={'flex justify-between px-4 py-2 text-sm dark:text-gray-200 hover:bg-transparent'}
+                                                        className={'flex justify-between px-4 py-2 text-sm dark:text-gray-200 hover:bg-transparent w-full outline-none'}
                                                     >
                                                         <span>ºC, m/s</span>
                                                     </button>)

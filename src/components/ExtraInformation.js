@@ -7,11 +7,17 @@ import { DownloadIcon, UploadIcon } from "@heroicons/react/solid";
 
 import sunUpAndDown from "../assets/img/sun-up-n-down.png";
 import wind from "../assets/img/extras/wind.svg";
+import windLight from "../assets/img/extras/wind-light.svg";
 import humidity from "../assets/img/extras/humidity.svg";
+import humidityLight from "../assets/img/extras/humidity-light.svg";
 import dew_point from "../assets/img/extras/dew_point.svg";
+import dew_pointLight from "../assets/img/extras/dew_point-light.svg";
 import pressure from "../assets/img/extras/pressure.svg";
+import pressureLight from "../assets/img/extras/pressure-light.svg";
 import uv_index from "../assets/img/extras/uv_index.svg";
+import uv_indexLight from "../assets/img/extras/uv_index-light.svg";
 import visibility from "../assets/img/extras/visibility.svg";
+import visibilityLight from "../assets/img/extras/visibility-light.svg";
 
 const ExtraInformation = ({weather}) => {
 
@@ -51,32 +57,32 @@ const ExtraInformation = ({weather}) => {
 
     const extraInfo = [
         {
-            icon: wind,
+            icon: weather.dark === false ? wind : windLight,
             title: 'Wind',
             value: wind_speed,
         },
         {
-            icon: humidity,
+            icon: weather.dark === false ? humidity : humidityLight,
             title: 'Humidity',
             value: humidity_percentage
         },
         {
-            icon: dew_point,
+            icon: weather.dark === false ? dew_point : dew_pointLight,
             title: 'Dew Point',
             value: dew_point_value,
         },
         {
-            icon: pressure,
+            icon: weather.dark === false ? pressure : pressureLight,
             title: 'Pressure',
             value: pressure_value
         },
         {
-            icon: uv_index,
+            icon: weather.dark === false ? uv_index : uv_indexLight,
             title: 'UV Index',
             value: uv_index_value
         },
         {
-            icon: visibility,
+            icon: weather.dark === false ? visibility : visibilityLight,
             title: 'Visibility',
             value: visibility_value
         },
