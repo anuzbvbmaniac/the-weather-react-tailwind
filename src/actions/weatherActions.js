@@ -1,9 +1,12 @@
 // Get Weather Data from Latitude and Longitude
 import axios from "axios";
-import { GET_CURRENT_WEATHER_DATA, SET_ALERT, SET_DARK_MODE, SET_ERRORS, SET_LOADING } from "./types";
+import { GET_CURRENT_WEATHER_DATA, SET_ALERT, SET_ERRORS, SET_LOADING } from "./types";
+import { OPEN_WEATHER_API } from "../apiKeys";
 
 const weatherURL = 'https://api.openweathermap.org/data/2.5/onecall';
 // const forecastURL = 'https://api.openweathermap.org/data/2.5/forecast';
+
+const openWeatherApiKeys = OPEN_WEATHER_API;
 
 export const getWeatherFromLatLong = () => {
     return async (dispatch) => {
@@ -17,7 +20,7 @@ export const getWeatherFromLatLong = () => {
             const success = async (pos) => {
                 let crd = pos.coords;
 
-                const weather_response = await axios.get(`${weatherURL}?lat=${crd.latitude}&lon=${crd.longitude}&units=metric&appid=85fb416f89dadf2fa074c6c5bcd0c4e1`);
+                const weather_response = await axios.get(`${weatherURL}?lat=${crd.latitude}&lon=${crd.longitude}&units=metric&appid=${openWeatherApiKeys}`);
                 const weather_data = await weather_response.data;
 
                 const location_response = await axios.get(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${crd.latitude}&longitude=${crd.longitude}&localityLanguage=en`);
@@ -81,18 +84,11 @@ export const getHourlyData = () => {
                 payload: err.response.statusText
             });
         }
-    }
-}
+    };
+};
 
 export const setLoading = () => {
     return {
         type: SET_LOADING
     };
 };
-
-// export const toggleDarkMode = (status) => {
-//     return {
-//         type: SET_DARK_MODE,
-//         payload: status,
-//     }
-// }
