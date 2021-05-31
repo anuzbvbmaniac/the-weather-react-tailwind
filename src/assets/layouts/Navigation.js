@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { connect } from "react-redux";
 
 import { SearchIcon } from "@heroicons/react/solid";
