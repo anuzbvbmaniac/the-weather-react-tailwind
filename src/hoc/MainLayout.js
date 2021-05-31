@@ -30,7 +30,7 @@ const MainLayout = ({ getWeatherFromLatLong, weather, children }) => {
 
             <SecondaryNav name={weather.location.city} country={weather.location.countryName} degreeType={weather.degreeType}/>
 
-            <main className="mt-4 pb-0">
+            <main className="mt-4 pb-0 bg-purple-50 dark:bg-dark ">
                 {children}
             </main>
         </div>

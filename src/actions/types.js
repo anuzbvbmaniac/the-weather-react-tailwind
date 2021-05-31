@@ -10,3 +10,4 @@ export const SET_LOADING = 'SET_LOADING';
 export const SET_ALERT = 'SET_ALERT';
 
 export const SET_DARK_MODE = 'SET_DARK_MODE';
+export const SET_METRIC = 'SET_METRIC';

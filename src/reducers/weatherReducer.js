@@ -1,4 +1,4 @@
-import { GET_CURRENT_WEATHER_DATA, SET_LOADING } from "../actions/types";
+import { GET_CURRENT_WEATHER_DATA, SET_LOADING, SET_METRIC } from "../actions/types";
 
 const initialState = {
     loading: false,
@@ -7,7 +7,7 @@ const initialState = {
     dailyData: [],
     location: [],
     dark: false,
-    degreeType: 'celsius', // fahrenheit, kelvin
+    degreeType: 'celsius', // fahrenheit
 };
 
 const weatherReducer = (state = initialState, action) => {
@@ -21,6 +21,12 @@ const weatherReducer = (state = initialState, action) => {
                 dailyData: action.payload.weather.daily,
                 location: action.payload.location,
                 loading: false,
+            };
+        case SET_METRIC:
+            return {
+                ...state,
+                degreeType: action.payload,
+                loadings: false,
             };
         case SET_LOADING:
             return {

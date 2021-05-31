@@ -90,25 +90,25 @@ const ExtraInformation = ({weather}) => {
                 </h2>
                 <div className="">
                     <div className="sm:flex sm:items-center sm:justify-between">
-                        <div className="mt-0 text-center sm:mt-0 sm:pt-1 sm:text-left">
+                        <div className="mt-0 lg:text-center sm:mt-0 sm:pt-1 sm:text-left">
                             <p className="text-sm font-semibold text-gray-600 mt-0 dark:text-gray-200">Weather today in {weather.location.city}, {weather.location.countryName}</p>
                         </div>
                     </div>
 
                     <div className="flex justify-between">
 
-                        <div className="sm:flex sm:items-center sm:justify-between pt-2">
+                        <div className="sm:flex sm:items-center sm:justify-between lg:pt-2 md:pt-2 sm:pt-4">
                             <div className="sm:flex sm:space-x-5">
-                                <div className="text-center sm:mt-0 sm:pt-1 sm:text-left">
+                                <div className="sm:mt-0 sm:pt-1 text-left">
                                     <p className="mt-0 text-5xl font-semibold text-gray-600 dark:text-gray-200">{feels_like_value}</p>
-                                    <p className="text-sm font-medium text-gray-400 mt-2">Feels like</p>
+                                    <p className="text-md font-medium text-gray-400 mt-2">Feels like</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="sm:flex sm:items-center sm:justify-between pt-2 justify-end">
+                        <div className="sm:flex sm:items-center sm:justify-between lg:pt-1 md:pt-2 sm:pt-4 justify-end">
                             <div className="sm:flex sm:space-x-5">
-                                <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left flex flex-col items-center">
+                                <div className="lg:mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left flex flex-col items-center">
                                     <img src={sunUpAndDown} alt="" className="w-24"/>
                                     <p className="text-sm font-medium text-gray-400 mt-2 text-right inline-flex items-center">
                                         <UploadIcon className="w-5 h-5 text-yellow-400 mr-3"/>

@@ -4,26 +4,29 @@ import PropTypes from "prop-types";
 import { ChevronDownIcon, GlobeIcon } from "@heroicons/react/solid";
 import { Menu, Transition } from "@headlessui/react";
 
+import { setMetric } from "../../actions/weatherActions";
+import { connect } from "react-redux";
 
-const SecondaryNav = ({name, country, degreeType}) => {
+const SecondaryNav = ({ weather, name, country, degreeType, setMetric }) => {
 
 
-    function classNames(...classes) {
-        return classes.filter(Boolean).join(' ');
-    }
+    const onClickHandler = () => {
+        const metric = weather.degreeType === 'celsius' ? 'fahrenheit' : 'celsius';
+        setMetric(metric);
+    };
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-0 pt-2">
+        <div className="max-w-8xl mx-auto lg:px-10 lg:px-10 md:px-8 px-4 pt-2">
             <div className="sm:flex sm:justify-between sm:items-center items-center">
                 <div className="sm:w-0 sm:flex-1">
                     <p className="text-xs text-gray-600 overflow-hidden overflow-ellipsis dark:text-gray-200">
                         <span className="font-semibold">{name}, {country} </span>
-                        - Based on your internet address - Use precise location - More information.
+                        - Based on your internet address.
                     </p>
                 </div>
 
-                <div className="mt-0 flex items-center justify-between sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:justify-start">
-                        <span className="inline-flex items-center px-3 py-0.5 text-sm font-medium">
+                <div className="lg:mt-0 md:mt-0 mt-2 flex items-center justify-between sm:ml-6 sm:justify-start">
+                        <span className="inline-flex items-center lg:px-3 lg:py-0.5 text-sm font-medium sm:px-0">
                             <GlobeIcon className="block h-6 w-6 dark:text-gray-200" aria-hidden="true"/>
                             <p className="ml-2 text-sm font-semibold text-gray-600 overflow-hidden overflow-ellipsis dark:text-gray-200">
                                 Metric: {degreeType === 'celsius' ? 'ºC, m/s' : 'ºF, mph'}
@@ -55,17 +58,21 @@ const SecondaryNav = ({name, country, degreeType}) => {
                                     >
                                         <div className="py-1">
                                             <Menu.Item>
-                                                {({ active }) => (
-                                                    <a
-                                                        href="/"
-                                                        className={classNames(
-                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                            'flex justify-between px-4 py-2 text-sm dark:text-gray-200 hover:bg-black'
-                                                        )}
+                                                {(weather.degreeType === 'celsius')
+                                                    ? (<button
+                                                        onClick={onClickHandler}
+                                                        className={'flex justify-between px-4 py-2 text-sm dark:text-gray-200 hover:bg-transparent'}
                                                     >
                                                         <span>ºF, mph</span>
-                                                    </a>
-                                                )}
+                                                    </button>)
+                                                    : (<button
+                                                        onClick={onClickHandler}
+                                                        className={'flex justify-between px-4 py-2 text-sm dark:text-gray-200 hover:bg-transparent'}
+                                                    >
+                                                        <span>ºC, m/s</span>
+                                                    </button>)
+
+                                                }
                                             </Menu.Item>
                                         </div>
                                     </Menu.Items>
@@ -83,7 +90,7 @@ SecondaryNav.defaultProps = {
     name: 'Kathmandu',
     country: 'Nepal',
     degreeType: 'celsius'
-}
+};
 
 SecondaryNav.protoTypes = {
     name: PropTypes.string.isRequired,
@@ -91,4 +98,11 @@ SecondaryNav.protoTypes = {
     degreeType: PropTypes.string.isRequired,
 };
 
-export default SecondaryNav;
+const mapStateToProps = (state) => ({
+    weather: state.weather,
+});
+
+export default connect(
+    mapStateToProps,
+    { setMetric }
+)(SecondaryNav);

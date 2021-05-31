@@ -1,6 +1,6 @@
 // Get Weather Data from Latitude and Longitude
 import axios from "axios";
-import { GET_CURRENT_WEATHER_DATA, SET_ALERT, SET_ERRORS, SET_LOADING } from "./types";
+import { GET_CURRENT_WEATHER_DATA, SET_ALERT, SET_ERRORS, SET_LOADING, SET_METRIC } from "./types";
 import { OPEN_WEATHER_API } from "../apiKeys";
 
 const weatherURL = 'https://api.openweathermap.org/data/2.5/onecall';
@@ -77,6 +77,25 @@ export const getHourlyData = () => {
     return async dispatch => {
         try {
 
+        } catch (err) {
+            console.log(err.message);
+            dispatch({
+                type: SET_ERRORS,
+                payload: err.response.statusText
+            });
+        }
+    };
+};
+
+export const setMetric = (metric) => {
+    return async (dispatch) => {
+        try {
+            setLoading();
+
+            dispatch({
+                type: SET_METRIC,
+                payload: metric,
+            });
         } catch (err) {
             console.log(err.message);
             dispatch({

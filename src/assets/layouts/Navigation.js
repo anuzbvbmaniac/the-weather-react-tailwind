@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { SearchIcon } from "@heroicons/react/solid";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
 import logo from "../img/logos/logo-black-512.png";
 
@@ -21,7 +21,7 @@ const Navigation = ({ weather }) => {
         body.classList.toggle('dark');
 
         if (document.body.classList.contains('dark')) {
-            localStorage.setItem('darkMode', 'true')
+            localStorage.setItem('darkMode', 'true');
         } else {
             localStorage.removeItem('darkMode');
         }
@@ -31,9 +31,9 @@ const Navigation = ({ weather }) => {
         <Disclosure as="nav">
             {({ open }) => (
                 <>
-                    <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-0 border-b-2 border-gray-200 dark:border-white">
-                        <div className="flex justify-between h-20">
-                            <div className="flex px-2 lg:px-0">
+                    <div className="max-w-8xl mx-auto lg:px-10 md:px-8 px-4">
+                        <div className="flex justify-between h-20 border-b-2 border-gray-200 dark:border-white">
+                            <div className="flex lg:px-0">
                                 <div className="flex-shrink-0 flex items-center">
                                     <img
                                         className="block lg:hidden h-14 w-auto"
@@ -106,7 +106,7 @@ const Navigation = ({ weather }) => {
                             </div>
                             <div className="flex items-center lg:hidden">
                                 {/* Mobile menu button */}
-                                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
+                                <Disclosure.Button className="inline-flex items-center justify-center lg:p-2 md:px-0 md:py-2 sm:px-0 sm:py-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
                                     <span className="sr-only">Open main menu</span>
                                     {open ? (
                                         <XIcon className="block h-6 w-6" aria-hidden="true"/>
@@ -151,7 +151,7 @@ const Navigation = ({ weather }) => {
                                                                 onClick={toggleDarkMode}
                                                                 className={classNames(
                                                                     active ? 'bg-gray-100' : '',
-                                                                    'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-dark'
+                                                                    'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-transparent'
                                                                 )}
                                                             >
                                                                 🌛 Enable Dark Mode
@@ -164,7 +164,7 @@ const Navigation = ({ weather }) => {
                                                                 href="/"
                                                                 className={classNames(
                                                                     active ? 'bg-gray-100' : '',
-                                                                    'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-dark'
+                                                                    'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-transparent'
                                                                 )}
                                                             >
                                                                 Github
@@ -177,10 +177,10 @@ const Navigation = ({ weather }) => {
                                                                 href="/"
                                                                 className={classNames(
                                                                     active ? 'bg-gray-100' : '',
-                                                                    'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-dark'
+                                                                    'block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-transparent'
                                                                 )}
                                                             >
-                                                                Sign out
+                                                                Website
                                                             </a>
                                                         )}
                                                     </Menu.Item>
@@ -196,29 +196,23 @@ const Navigation = ({ weather }) => {
                     <Disclosure.Panel className="lg:hidden">
                         <div className="pt-2 pb-3 space-y-1">
                             {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800" */}
-                            <a
-                                href="/"
-                                className="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                            <Link
+                                to="/"
+                                className="border-yellow-500 text-dark dark:text-gray-200 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                             >
-                                Dashboard
-                            </a>
+                                Home
+                            </Link>
+                            <Link
+                                to="/hourly"
+                                className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                            >
+                                Hourly
+                            </Link>
                             <a
                                 href="/"
                                 className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                             >
-                                Team
-                            </a>
-                            <a
-                                href="/"
-                                className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-                            >
-                                Projects
-                            </a>
-                            <a
-                                href="/"
-                                className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-                            >
-                                Calendar
+                                10 Days
                             </a>
                         </div>
                         <div className="pt-4 pb-3 border-t border-gray-200">
@@ -231,32 +225,29 @@ const Navigation = ({ weather }) => {
                                     />
                                 </div>
                                 <div className="ml-3">
-                                    <div className="text-base font-medium text-gray-800">Tom Cook</div>
-                                    <div className="text-sm font-medium text-gray-500">tom@example.com</div>
+                                    <div className="text-base font-medium text-gray-800">Anuz Pandey</div>
+                                    <div className="text-sm font-medium text-gray-500">anuzbvbmaniac123@gmail.com</div>
                                 </div>
-                                <button className="ml-auto flex-shrink-0 bg-white p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    <span className="sr-only">View notifications</span>
-                                    <BellIcon className="h-6 w-6" aria-hidden="true"/>
-                                </button>
                             </div>
                             <div className="mt-3 space-y-1">
                                 <a
-                                    href="/"
-                                    className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+                                    href="!#"
+                                    onClick={toggleDarkMode}
+                                    className="border-yellow-500 text-dark dark:text-gray-200 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                                 >
-                                    Your Profile
+                                    🌛 Enable Dark Mode
                                 </a>
                                 <a
                                     href="/"
-                                    className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+                                    className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                                 >
-                                    Settings
+                                    Github
                                 </a>
                                 <a
                                     href="/"
-                                    className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+                                    className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                                 >
-                                    Sign out
+                                    Website
                                 </a>
                             </div>
                         </div>
