@@ -1,21 +1,23 @@
 // Get Weather Data from Latitude and Longitude
 import axios from "axios";
 import { GET_CURRENT_WEATHER_DATA, GET_LOCATION_WEATHER_DATA, SET_ALERT, SET_DARK_MODE, SET_ERRORS, SET_LOADING, SET_METRIC } from "./types";
+import { MAPBOX_API, OPEN_WEATHER_API } from "../apiKeys";
 
 const weatherURL = 'https://api.openweathermap.org/data/2.5/onecall';
 // const forecastURL = 'https://api.openweathermap.org/data/2.5/forecast';
 const mapBoxURL = 'https://api.mapbox.com/geocoding/v5';
 
-let openWeatherApiKeys;
-let mapBoxApiKeys;
 
-if (process.env.NODE_ENV !== 'production') {
-    openWeatherApiKeys = process.env.REACT_APP_OPEN_WEATHER_API;
-    mapBoxApiKeys = process.env.REACT_APP_MAPBOX_API;
-} else {
-    openWeatherApiKeys = process.env.OPEN_WEATHER_API;
-    mapBoxApiKeys = process.env.MAPBOX_API;
-}
+let openWeatherApiKeys = OPEN_WEATHER_API;
+let mapBoxApiKeys = MAPBOX_API;
+
+// if (process.env.NODE_ENV !== 'production') {
+//     openWeatherApiKeys = process.env.REACT_APP_OPEN_WEATHER_API;
+//     mapBoxApiKeys = process.env.REACT_APP_MAPBOX_API;
+// } else {
+//     openWeatherApiKeys = process.env.OPEN_WEATHER_API;
+//     mapBoxApiKeys = process.env.MAPBOX_API;
+// }
 
 export const getWeatherFromLatLong = () => {
     return async (dispatch) => {
