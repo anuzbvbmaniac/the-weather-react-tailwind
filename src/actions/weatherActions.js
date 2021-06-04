@@ -1,12 +1,13 @@
 // Get Weather Data from Latitude and Longitude
 import axios from "axios";
-import { GET_CURRENT_WEATHER_DATA, SET_ALERT, SET_DARK_MODE, SET_ERRORS, SET_LOADING, SET_METRIC } from "./types";
-import { OPEN_WEATHER_API } from "../apiKeys";
+import { GET_CURRENT_WEATHER_DATA, GET_LOCATION_WEATHER_DATA, SET_ALERT, SET_DARK_MODE, SET_ERRORS, SET_LOADING, SET_METRIC } from "./types";
 
 const weatherURL = 'https://api.openweathermap.org/data/2.5/onecall';
 // const forecastURL = 'https://api.openweathermap.org/data/2.5/forecast';
+const mapBoxURL = 'https://api.mapbox.com/geocoding/v5';
 
-const openWeatherApiKeys = OPEN_WEATHER_API;
+const openWeatherApiKeys = process.env.REACT_APP_OPEN_WEATHER_API;
+const mapBoxApiKeys = process.env.REACT_APP_MAPBOX_API;
 
 export const getWeatherFromLatLong = () => {
     return async (dispatch) => {
@@ -73,6 +74,40 @@ export const getWeatherFromLatLong = () => {
     };
 };
 
+export const getWeatherFromLocation = (location) => {
+    return async dispatch => {
+        try {
+            setLoading();
+
+            const latLong_response = await axios.get(`${mapBoxURL}/mapbox.places/${location}.json?access_token=${mapBoxApiKeys}`);
+            const latlong_data = await latLong_response.data;
+
+            const latlong = latlong_data.features[0].center;
+            const [long, lat] = latlong;
+
+            console.log(latlong);
+
+            const weather_response = await axios.get(`${weatherURL}?lat=${lat}&lon=${long}&units=metric&appid=${openWeatherApiKeys}`);
+            const weather_data = await weather_response.data;
+            console.log(weather_data);
+
+            dispatch({
+                type: GET_LOCATION_WEATHER_DATA,
+                payload: {
+                    weather: weather_data,
+                    location: latlong_data,
+                },
+            });
+        } catch (err) {
+            console.log(err.message);
+            dispatch({
+                type: SET_ERRORS,
+                payload: err.response.statusText
+            });
+        }
+    };
+};
+
 export const getHourlyData = () => {
     return async dispatch => {
         try {
@@ -116,5 +151,5 @@ export const setDarkMode = (status) => {
     return {
         type: SET_DARK_MODE,
         payload: status,
-    }
-}
+    };
+};

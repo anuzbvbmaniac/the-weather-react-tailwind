@@ -1,4 +1,4 @@
-import { GET_CURRENT_WEATHER_DATA, SET_DARK_MODE, SET_LOADING, SET_METRIC } from "../actions/types";
+import { GET_CURRENT_WEATHER_DATA, GET_LOCATION_WEATHER_DATA, SET_DARK_MODE, SET_LOADING, SET_METRIC } from "../actions/types";
 
 const initialState = {
     loading: false,
@@ -14,6 +14,15 @@ const weatherReducer = (state = initialState, action) => {
     switch (action.type) {
         // eslint-disable-next-line no-undef
         case GET_CURRENT_WEATHER_DATA:
+            return {
+                ...state,
+                currentData: action.payload.weather.current,
+                hourlyData: action.payload.weather.hourly,
+                dailyData: action.payload.weather.daily,
+                location: action.payload.location,
+                loading: false,
+            };
+        case GET_LOCATION_WEATHER_DATA:
             return {
                 ...state,
                 currentData: action.payload.weather.current,
