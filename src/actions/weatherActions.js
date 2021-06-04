@@ -6,8 +6,16 @@ const weatherURL = 'https://api.openweathermap.org/data/2.5/onecall';
 // const forecastURL = 'https://api.openweathermap.org/data/2.5/forecast';
 const mapBoxURL = 'https://api.mapbox.com/geocoding/v5';
 
-const openWeatherApiKeys = process.env.REACT_APP_OPEN_WEATHER_API;
-const mapBoxApiKeys = process.env.REACT_APP_MAPBOX_API;
+let openWeatherApiKeys;
+let mapBoxApiKeys;
+
+if (process.env.NODE_ENV !== 'production') {
+    openWeatherApiKeys = process.env.REACT_APP_OPEN_WEATHER_API;
+    mapBoxApiKeys = process.env.REACT_APP_MAPBOX_API;
+} else {
+    openWeatherApiKeys = process.env.OPEN_WEATHER_API;
+    mapBoxApiKeys = process.env.MAPBOX_API;
+}
 
 export const getWeatherFromLatLong = () => {
     return async (dispatch) => {
